@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main class="main">
+        <div class="container">
+            <div class="input">
+                <h1 class="logo">TODO</h1>
+                <input type="text" class="input__line" placeholder="Add title task..." id="title">
+                <textarea name="description" id="description" class="input__description" placeholder="Add description from your task..."></textarea>
+                <button class="input__push" id="push">Add</button>
+            </div>
+            <ul class="list" id="list">
+                <img src="./add.svg" alt="" class="add__image">
+                <p>Add task in this list...</p>
+            </ul>
+            <div class="buttons">
+                <button class="completed" id="completed">Completed</button>
+                <button class="active" id="active">Active</button>
+                <button class="all" id="all">All</button>
+                <button class="delete__checked" id="delete__check">Delete</button>
+                <button class="checked__all" id="checked__all">Checked All
+                    <input type="checkbox" id="checkbox__all">
+                </button>
+            </div>
+        </div>
+        <div class="modal">
+            <div class="modal__close">
+                <img src="./remove.svg" alt="" class="modal__close--image">
+            </div>
+            <div class="modal__input">
+                <label class="title__lable">Title</label>
+                <input class="modal__title" type="text" value="">
+                <label label class="description__lable">Description</label>
+                <textarea class="modal__description"></textarea>
+                <label class=""date__label>Date</label>
+                <input class="modal__date" type="date" value="">
+            </div>
+            <div class="modal__options">
+                <button class="modal__save">Save</button>
+                <input type="checkbox" class="modal__checkbox">
+                <button class="modal__delete">Delete</button>
+            </div>
+        </div>
+    </main>
+    <script src="./app.js"></script>
+    
+</body>
+</html>
