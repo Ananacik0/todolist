@@ -29,6 +29,7 @@ const addTask = () => {
             title: titleTask.value,
             description: descriptionTask.value,
             isChecked: false,
+            deadline: '',
         };
         arrayTask.push(task);
         titleTask.value = '';
@@ -40,6 +41,7 @@ const addTask = () => {
         // modal window for error
     };
 };
+
 const pressKeyboard = (event) => {
     switch (true) {
         case event.code === 'Enter':
@@ -53,10 +55,12 @@ const pressKeyboard = (event) => {
     }
     event.code === 'Enter' ? addTask() : '';
 };
+
 const deleteCheck = () => {
     arrayTask = arrayTask.filter( element => !element.isChecked);
     render();
 };
+
 const checkedAll = (event) => {
     arrayTask.length > 0 ? arrayTask.forEach( element => {
         event.target.checked === true ? element.isChecked = true : element.isChecked = false;
@@ -70,7 +74,7 @@ const taskWindow = (element) => {
     modalWindow.style.left = `0`;
     modalTitle.value = element.title;
     modalDescription.innerText = element.description;
-    modalDate.value = '';
+    modalDate.value = element.deadline;
     modalCheckbox.checked = element.isChecked;
     thisTask = element
 };
@@ -79,6 +83,7 @@ const saveDataInTask = (element) => {
     element.title = modalTitle.value;
     element.description = modalDescription.value;
     element.isChecked = modalCheckbox.checked;
+    element.deadline = modalDate.value;
     thisTask = element;
 };
 
@@ -99,6 +104,7 @@ const btnOptions = (event) => {
             break;
         case event.target.className === 'modal__delete':
             arrayTask = arrayTask.filter( element => element.id !== thisTask.id);
+            modalWindow.style.left = `-100vw`
             render()
             break;
         default:
@@ -151,6 +157,7 @@ console.log(event)
 const tasksAllCheckbox = () => {
     checkboxAll.checked = arrayTask.length > 0 ? arrayTask.every( element => element.isChecked) : false;
 };
+
 const filterButton = (event) => {
     switch (true) {
         case event.target.id === 'all':
@@ -212,6 +219,7 @@ const filterType = () => {
             break;
     };
 };
+
 const render = () => {
     let newTask = ``;
     let newArray = filterType();
@@ -222,6 +230,7 @@ const render = () => {
                     <div class="task__text">
                         <h2 class="task__title">${element.title}</h2>
                         <p class="task__description">${element.description}</p>
+                        <span class=""task__deadline>${element.deadline}</span>
                     </div>
                     <div class="task__options" id="${element.id}">
                         <input type="checkbox" ${element.isChecked ? 'checked' : ''} id="checkbox__task">
@@ -241,6 +250,7 @@ const render = () => {
     tasksAllCheckbox();
     lengthArray();
 };
+
 // listening
 const listenlistTask = listTask.addEventListener( 'click', clickList);
 const listenAdd = btnAdd.addEventListener( 'click', addTask);
